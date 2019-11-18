@@ -8,9 +8,22 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
-    <%= render 'layouts/alerts' %>
-    <%= yield %>
+  <nav class="navbar navbar-inverse">
+    <%= link_to ' My Blog', root_path, class: 'navbar-brand' %>
+    <div class="container">
+      <p class="navbar-text navbar-right">
+        <% if user_signed_in? %>
+        <%= link_to 'New Post', new_post_path %>
+        <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+        <%else%>
+        <%= link_to 'Admin Login', new_user_session_path%>
+        <% end %>
+      </p>
+  </nav>
+  <div class="col-md-10 col-md-offset-1">
+        <%= render 'layouts/alerts' %>
+        <%= yield %>
+  </div>
   </body>
 </html>
