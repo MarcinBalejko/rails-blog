@@ -4,23 +4,33 @@
     <title>Blog</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://bootswatch.com/4/pulse/bootstrap.min.css">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-  <nav class="navbar navbar-inverse">
-    <%= link_to 'My Blog', root_path, class: 'navbar-brand' %>
-    <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" href="#"><%= link_to 'My Blog', root_path, class: 'navbar-brand' %></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+      <ul class="navbar-nav mr-auto">
       <p class="navbar-text navbar-right">
         <% if user_signed_in? %>
         <%= link_to 'New Post', new_post_path, class: 'navbar-link' %>
-        <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+        <%= link_to 'Sign out', destroy_user_session_path, class: 'navbar-link', method: :delete %>
         <%else%>
         <%= link_to 'Admin Login', new_user_session_path, class: 'navbar-link' %>
         <% end %>
       </p>
+    </div>
   </nav>
+
+
+
+
   <div class="col-md-10 col-md-offset-1">
         <%= yield %>
   </div>
